@@ -48,7 +48,7 @@ public class AdminController {
 	@GetMapping("/rest")
 	public ResponseEntity<?> getAllEmployeeRest(){
 		
-		log.info("Received request to get all items using FRestTemplete");
+		log.info("Received request to get all items using RestTemplete");
 		return ResponseEntity.ok(aService.getAllEmployeeUsingRest());
 	}
 }

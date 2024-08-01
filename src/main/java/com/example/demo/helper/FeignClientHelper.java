@@ -8,9 +8,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.demo.data.EmployeeEo;
+import com.example.demo.util.Constants;
 
 @Component
-@FeignClient(name = "firstAppClient", url = "${first.app.base.url}")
+@FeignClient(name = "firstAppClient", url = "${emp.service.uri}")
 public interface FeignClientHelper {
 	
 	@GetMapping("retrieval/{id}")
