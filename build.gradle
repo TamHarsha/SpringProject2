@@ -38,10 +38,30 @@ dependencies {
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	runtimeOnly 'com.h2database:h2'
 	
+	//Mapstruct Dependency 
 	implementation 'org.mapstruct:mapstruct:1.5.5.Final'
     annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
     
+    //Dependency for Spring Server-Client 
     implementation 'org.springframework.cloud:spring-cloud-starter-config'
+    
+    //Wire Mock Dependency
+    testImplementation 'org.mockito:mockito-core:4.8.1'
+    testImplementation 'com.github.tomakehurst:wiremock-jre8:2.32.0'
+    
+     testImplementation 'javax.servlet:javax.servlet-api:4.0.1'
+     
+    // Add Jetty dependencies
+    implementation 'org.eclipse.jetty:jetty-util:9.4.44.v20210927'
+    implementation 'org.eclipse.jetty:jetty-server:9.4.44.v20210927'
+    implementation 'org.eclipse.jetty:jetty-http:9.4.44.v20210927'
+    implementation 'org.eclipse.jetty:jetty-io:9.4.44.v20210927'
+    implementation 'org.eclipse.jetty:jetty-security:9.4.44.v20210927'
+    implementation 'org.eclipse.jetty:jetty-servlet:9.4.44.v20210927'
+    implementation 'org.eclipse.jetty:jetty-webapp:9.4.44.v20210927'
+    
+    
+    
 }
 
 dependencyManagement {
