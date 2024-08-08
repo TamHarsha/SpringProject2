@@ -31,7 +31,7 @@ public class RestTempletHelper {
 	}
 	
 	public List<EmployeeEo> getAllEmployee() {
-		log.info("Calling first application  to get All Employee using RestTemplet for id");
+		log.info("Calling first application  to get All Employee using RestTemplet");
 		String url = employeeUri+"all";
 		EmployeeEo[] emp = restTemplate.getForObject(url, EmployeeEo[].class);
 		return Arrays.asList(emp);

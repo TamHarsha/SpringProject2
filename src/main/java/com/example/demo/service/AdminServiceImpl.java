@@ -27,6 +27,7 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Autowired
 	private EMapper eMapper;
+	
 
 	@Override
 	public EmployeeBo getEmployeeUsingRestTemplet(int empId) {
@@ -61,5 +62,8 @@ public class AdminServiceImpl implements AdminService {
 				.map(eMapper::entityTOBo)
 				.collect(Collectors.toList());
 	}
+	
+
+	
 
 }

@@ -19,7 +19,6 @@ import org.springframework.http.ResponseEntity;
 
 import com.example.demo.bo.EmployeeBo;
 import com.example.demo.controller.AdminController;
-import com.example.demo.data.EmployeeEo;
 import com.example.demo.service.AdminServiceImpl;
 import com.github.tomakehurst.wiremock.WireMockServer;
 
@@ -36,25 +35,25 @@ class AdminControllerTest {
 	@Mock
 	private AdminServiceImpl aService;
 	
-//	 @BeforeEach
-//	 void setup() {
-//	     wireMock = new WireMockServer(8080);
-//	     wireMock.start();
-//	     stubFor(get(urlEqualTo("/employee/1"))
-//	         .willReturn(aResponse()
-//	             .withHeader("Content-Type", "application/json")
-//	             .withBody("{ \"empId\": 1, \"employeeName\": \"Harsha\", \"employeeEmailId\": \"abc@gmail.com\", \"employeeAddress\": \"Hyd\", \"employeeNumber\": \"1234567890\" }")));
-//	        
-//	     stubFor(get(urlEqualTo("/employees"))
-//	         .willReturn(aResponse()
-//	             .withHeader("Content-Type", "application/json")
-//	             .withBody("[{ \"empId\": 1, \"employeeName\": \"Harsha\", \"employeeEmailId\": \"abc@gmail.com\", \"employeeAddress\": \"Hyd\", \"employeeNumber\": \"1234567890\" }]")));
-//	    }
-//
-//	 @AfterEach
-//	 void teardown() {
-//	        wireMock.stop();
-//	    }
+	 @BeforeEach
+	 void setup() {
+	     wireMock = new WireMockServer(8080);
+	     wireMock.start();
+	     stubFor(get(urlEqualTo("/employee/1"))
+	         .willReturn(aResponse()
+	             .withHeader("Content-Type", "application/json")
+	             .withBody("{ \"empId\": 1, \"employeeName\": \"Harsha\", \"employeeEmailId\": \"abc@gmail.com\", \"employeeAddress\": \"Hyd\", \"employeeNumber\": \"1234567890\" }")));
+	        
+	     stubFor(get(urlEqualTo("/employees"))
+	         .willReturn(aResponse()
+	             .withHeader("Content-Type", "application/json")
+	             .withBody("[{ \"empId\": 1, \"employeeName\": \"Harsha\", \"employeeEmailId\": \"abc@gmail.com\", \"employeeAddress\": \"Hyd\", \"employeeNumber\": \"1234567890\" }]")));
+	    }
+
+	 @AfterEach
+	 void teardown() {
+	        wireMock.stop();
+	    }
 
 	@Test
 	void testGetEmployeeUsingRestTemplate() {

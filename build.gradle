@@ -60,6 +60,13 @@ dependencies {
     implementation 'org.eclipse.jetty:jetty-servlet:9.4.44.v20210927'
     implementation 'org.eclipse.jetty:jetty-webapp:9.4.44.v20210927'
     
+    //Circuit Bracker Dependency
+    implementation 'io.github.resilience4j:resilience4j-spring-boot2:1.7.1'
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j'
+    
+
     
     
 }
