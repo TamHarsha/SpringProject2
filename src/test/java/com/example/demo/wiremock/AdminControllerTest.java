@@ -35,25 +35,29 @@ class AdminControllerTest {
 	@Mock
 	private AdminServiceImpl aService;
 	
-	 @BeforeEach
-	 void setup() {
-	     wireMock = new WireMockServer(8080);
-	     wireMock.start();
-	     stubFor(get(urlEqualTo("/employee/1"))
-	         .willReturn(aResponse()
-	             .withHeader("Content-Type", "application/json")
-	             .withBody("{ \"empId\": 1, \"employeeName\": \"Harsha\", \"employeeEmailId\": \"abc@gmail.com\", \"employeeAddress\": \"Hyd\", \"employeeNumber\": \"1234567890\" }")));
-	        
-	     stubFor(get(urlEqualTo("/employees"))
-	         .willReturn(aResponse()
-	             .withHeader("Content-Type", "application/json")
-	             .withBody("[{ \"empId\": 1, \"employeeName\": \"Harsha\", \"employeeEmailId\": \"abc@gmail.com\", \"employeeAddress\": \"Hyd\", \"employeeNumber\": \"1234567890\" }]")));
-	    }
-
-	 @AfterEach
-	 void teardown() {
-	        wireMock.stop();
-	    }
+//	@BeforeEach
+//	void setup() {
+//	    wireMock = new WireMockServer(8088);
+//	    wireMock.start();
+//	    
+//	    // Stub for getting a single employee
+//	    stubFor(get(urlEqualTo("/employee/1"))
+//	        .willReturn(aResponse()
+//	            .withHeader("Content-Type", "application/json")
+//	            .withBody("{ \"empId\": 1, \"employeeName\": \"Harsha\", \"employeeEmailId\": \"abc@gmail.com\", \"employeeAddress\": \"Hyd\", \"employeeNumber\": \"1234567890\" }")));
+//	    
+//	    // Stub for getting all employees
+//	    stubFor(get(urlEqualTo("/employees"))
+//	        .willReturn(aResponse()
+//	            .withHeader("Content-Type", "application/json")
+//	            .withBody("[{ \"empId\": 1, \"employeeName\": \"Harsha\", \"employeeEmailId\": \"abc@gmail.com\", \"employeeAddress\": \"Hyd\", \"employeeNumber\": \"1234567890\" }]")));
+//	}
+//
+//
+//	 @AfterEach
+//	 void teardown() {
+//	        wireMock.stop();
+//	    }
 
 	@Test
 	void testGetEmployeeUsingRestTemplate() {
