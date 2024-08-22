@@ -20,6 +20,8 @@ import org.springframework.http.ResponseEntity;
 import com.example.demo.bo.EmployeeBo;
 import com.example.demo.controller.AdminController;
 import com.example.demo.service.AdminServiceImpl;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.tomakehurst.wiremock.WireMockServer;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
@@ -35,29 +37,33 @@ class AdminControllerTest {
 	@Mock
 	private AdminServiceImpl aService;
 	
-//	@BeforeEach
-//	void setup() {
-//	    wireMock = new WireMockServer(8088);
-//	    wireMock.start();
-//	    
-//	    // Stub for getting a single employee
-//	    stubFor(get(urlEqualTo("/employee/1"))
-//	        .willReturn(aResponse()
-//	            .withHeader("Content-Type", "application/json")
-//	            .withBody("{ \"empId\": 1, \"employeeName\": \"Harsha\", \"employeeEmailId\": \"abc@gmail.com\", \"employeeAddress\": \"Hyd\", \"employeeNumber\": \"1234567890\" }")));
-//	    
-//	    // Stub for getting all employees
-//	    stubFor(get(urlEqualTo("/employees"))
-//	        .willReturn(aResponse()
-//	            .withHeader("Content-Type", "application/json")
-//	            .withBody("[{ \"empId\": 1, \"employeeName\": \"Harsha\", \"employeeEmailId\": \"abc@gmail.com\", \"employeeAddress\": \"Hyd\", \"employeeNumber\": \"1234567890\" }]")));
-//	}
-//
-//
-//	 @AfterEach
-//	 void teardown() {
-//	        wireMock.stop();
-//	    }
+	@BeforeEach
+	void setup() {
+	    wireMock = new WireMockServer(8088);
+	    wireMock.start();
+	    configureFor("localhost", wireMock.port());
+	    
+	    ObjectMapper objectMapper = new ObjectMapper();
+	    objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+	    
+	    // Stub for getting a single employee
+	    stubFor(get(urlEqualTo("/api/employee/retrieval/1"))
+	        .willReturn(aResponse()
+	            .withHeader("Content-Type", "application/json")
+	            .withBody("{ \"empId\": 1, \"employeeName\": \"Harsha\", \"employeeEmailId\": \"abc@gmail.com\", \"employeeAddress\": \"Hyd\", \"employeeNumber\": \"1234567890\" }")));
+	    
+	    // Stub for getting all employees
+	    stubFor(get(urlEqualTo("/api/employee/all"))
+	        .willReturn(aResponse()
+	            .withHeader("Content-Type", "application/json")
+	            .withBody("[{ \"empId\": 1, \"employeeName\": \"Harsha\", \"employeeEmailId\": \"abc@gmail.com\", \"employeeAddress\": \"Hyd\", \"employeeNumber\": \"1234567890\" }]")));
+	}
+
+
+	 @AfterEach
+	 void teardown() {
+	        wireMock.stop();
+	    }
 
 	@Test
 	void testGetEmployeeUsingRestTemplate() {

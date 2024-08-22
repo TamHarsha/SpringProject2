@@ -1,6 +1,5 @@
 package com.example.demo.wiremock;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
@@ -13,9 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import com.example.demo.Emapper.EMapper;
 import com.example.demo.bo.EmployeeBo;
@@ -28,11 +25,11 @@ import com.github.tomakehurst.wiremock.junit5.WireMockTest;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 
-//@WireMockTest
+@WireMockTest
 @ExtendWith(MockitoExtension.class)
 class AdminServiceTest {
 	
-	//private WireMockServer wireMockServer;
+	private WireMockServer wireMockServer;
 	
 	@InjectMocks
 	private AdminServiceImpl aService;
@@ -48,21 +45,21 @@ class AdminServiceTest {
 	
 
 	
-//	@BeforeEach
-//	void setUp() {
-//		wireMockServer = new WireMockServer(8080);
-//		wireMockServer.start();
-//		
-//		 stubFor(get(urlEqualTo("/employee/1"))
-//				 .willReturn(aResponse()
-//	                .withHeader("Content-Type", "application/json")
-//	                .withBody("{ \"id\": 1, \"name\": \"Harsha\",\"email\": \"abc@gmail.com\", \"address\": \"Hyd\", \"phone\": \"1234567890\" }")));
-//	}
-//	
-//	@AfterEach
-//	void teardown() {
-//        wireMockServer.stop();
-//    }
+	@BeforeEach
+	void setUp() {
+		wireMockServer = new WireMockServer(8088);
+		wireMockServer.start();
+		
+		 stubFor(get(urlEqualTo("/employee/1"))
+				 .willReturn(aResponse()
+	                .withHeader("Content-Type", "application/json")
+	                .withBody("{ \"id\": 1, \"name\": \"Harsha\",\"email\": \"abc@gmail.com\", \"address\": \"Hyd\", \"phone\": \"1234567890\" }")));
+	}
+	
+	@AfterEach
+	void teardown() {
+        wireMockServer.stop();
+    }
 
 	@Test
 	void testGetEmployeeUsingRestTemplet() {
