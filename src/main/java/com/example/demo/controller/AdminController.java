@@ -12,6 +12,7 @@ import com.example.demo.data.EmployeeEo;
 import com.example.demo.service.AdminServiceImpl;
 
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
@@ -25,6 +26,7 @@ public class AdminController {
 	
 	@GetMapping("/rest/{id}")
 	@CircuitBreaker(name = "SpringProject2", fallbackMethod = "restGetByIdFallBack")
+	@Operation(summary = "Get Employee By ID", description = "Retrieve the Employee Details by Id using Rest Template")
     public ResponseEntity<?> getEmployeeUsingRestTemplate(@Valid@PathVariable("id") int id) {
 		log.info("Received request to get Employee using RestTemplate with id: {}", id);
         EmployeeBo emplBO = aService.getEmployeeUsingRestTemplet(id);
@@ -42,6 +44,7 @@ public class AdminController {
 	
 	@GetMapping("feignclient/{id}")
 	@CircuitBreaker(name = "SpringProject2", fallbackMethod = "feignGetByIdFallBack")
+	@Operation(summary = "Get Employee By ID", description = "Retrieve the Employee Details by Id using Feign Client")
 	public ResponseEntity<EmployeeBo> getEmployeeUsingFeign(@Valid@PathVariable("id") int id){
 		
 		log.info("Received request to get item using FeignClient with id: {}", id);
@@ -59,6 +62,7 @@ public class AdminController {
 	
 	@GetMapping("/feignclient")
 	@CircuitBreaker(name = "SpringProject2", fallbackMethod = "feignGetAllFallBack")
+	@Operation(summary = "Get All Employee Details", description = "Retrieve All Employee details using Feign Client ")
 	public ResponseEntity<?> getAllEmployeeFeign(){
 		
 		log.info("Received request to get all items using FeignClient");
@@ -75,6 +79,7 @@ public class AdminController {
 	
 	@GetMapping("/rest")
 	@CircuitBreaker(name = "SpringProject2", fallbackMethod = "restGetAllFallBack")
+	@Operation(summary = "Get All Employee Details", description = "Retrieve All Employee details using Rest Template ")
 	public ResponseEntity<?> getAllEmployeeRest(){
 		
 		log.info("Received request to get all items using RestTemplete");
